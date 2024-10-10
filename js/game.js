@@ -6,7 +6,13 @@ class Game {
     this.gameContainer = document.querySelector("#game-container");
     this.scoreElement = document.getElementById("score");
     this.livesElement = document.getElementById("lives");
-    this.player = new Player();
+    this.player = new Player(
+      0,
+      280,
+      200,
+      320,
+      "./images/garbage collector.png"
+    );
     this.obtsacles = [new Obstacle()];
     this.score = 0;
     this.lives = 3;
@@ -35,5 +41,7 @@ class Game {
   }
   update() {
     this.counter++;
+    //update the player on the DOM based on the direction of the player
+    this.player.move();
   }
 }
