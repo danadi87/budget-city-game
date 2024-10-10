@@ -1,2 +1,2 @@
 # budget-city-game
-Learn to budget like a pro!
+Embark on an exciting adventure across the city, bringing cleanliness our location. Perfect for young minds, this game combines fun with educational value, teaching responsibility and the importance of keeping our environments clean.
