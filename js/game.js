@@ -25,6 +25,7 @@ class Game {
     this.gameIntervalId = null;
     this.gameLoopFrequency = 1000 / 60;
     this.counter = 0;
+    this.collectedGarbageItemsCount = 0;
   }
   start() {
     //set the height and width of the game screen
@@ -62,28 +63,16 @@ class Game {
     for (let i = 0; i < this.obstacles.length; i++) {
       const currentObstacle = this.obstacles[i];
       currentObstacle.move();
-
+s
       //check for collisions between the player and the obstacle and update the collected items
       const didCollide = this.player.didCollide(currentObstacle);
       if (didCollide) {
         //remove the obstacle
         this.obstacles.splice(i, 1);
-        currentObstacle.element.remove;
-        //update the count on the garbage items collected
-        this.collectedGarbageItems++;
-        this.collectedGarbageItems.innerText = this.collectedGarbageItems;
-      }
-
-      //check the top of the obstacle and if it's greater than the height of the game screen, then it increases the score and removes that obstacle
-      //increment the score
-      if (currentObstacle.left < -100) {
-        this.score++;
-        //remove the obstacle from the array
-        this.obstacles.splice(i, 1);
-        //update the DOM to reflect the new score
-        this.scoreElement.innerText = this.score;
         currentObstacle.element.remove();
-        i--;
+        //update the count on the garbage items collected
+        this.collectedGarbageItemsCount++;
+        this.collectedGarbageItems.innerText = this.collectedGarbageItemsCount;
       }
     }
   }
