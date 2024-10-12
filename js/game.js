@@ -11,7 +11,7 @@ class Game {
     );
     this.player = new Player(
       0,
-      280,
+      30,
       200,
       320,
       "./images/garbage collector.png"
@@ -26,6 +26,13 @@ class Game {
     this.gameLoopFrequency = 1000 / 60;
     this.counter = 0;
     this.collectedGarbageItemsCount = 0;
+    this.trashCan = new Player(
+      1300,
+      400,
+      100,
+      200,
+      "./images/point-winners/old closed trash can.png"
+    );
   }
   start() {
     //set the height and width of the game screen
@@ -55,7 +62,9 @@ class Game {
   update() {
     //increment the counter so we add more obstacles
     this.counter++;
-
+    if (this.counter % 180 === 0) {
+      this.obstacles.push(new Obstacle());
+    }
     //update the player on the DOM based on the direction of the player
     this.player.move();
 
@@ -63,7 +72,7 @@ class Game {
     for (let i = 0; i < this.obstacles.length; i++) {
       const currentObstacle = this.obstacles[i];
       currentObstacle.move();
-s
+
       //check for collisions between the player and the obstacle and update the collected items
       const didCollide = this.player.didCollide(currentObstacle);
       if (didCollide) {

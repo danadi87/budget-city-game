@@ -1,8 +1,11 @@
 class Obstacle {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen");
-    //the position is Y because the obstacles will move horizontally and not vertically
-    this.positionY = [150, 100, 40, 10, 28, 37, 99, 32];
+    //the position is Y because the obstacles will move vertically
+    //the numbers in the array will determine the position at different heights on the screen
+    this.positionY = [
+      500, 400, 340, 50, 218, 32, 324, 488, 170, 85, 110, 48, 33, 263, 144,
+    ];
     this.randomIndex = Math.floor(Math.random() * this.positionY.length);
     this.bottom = this.positionY[this.randomIndex];
     this.height = 120;
