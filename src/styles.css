@@ -6,16 +6,16 @@ body {
 }
 #game-intro {
   position: relative;
-  background-image: url("../images/background start game.png");
+  background-image: url("../images/shop.png");
   background-size: cover;
   background-position: center;
-  height: 95vh;
-  width: 99vw;
+  height: 100vh;
+  width: 100vw;
 }
 #start-button {
   position: absolute;
-  top: 36%;
-  left: 30%;
+  top: 46%;
+  left: 40%;
   padding: 15px 30px;
   background-color: #f39c12;
   color: white;
@@ -31,12 +31,23 @@ body {
 }
 .welcome-message {
   position: absolute;
-  top: 10%;
-  left: 12%;
-  color: white;
+  top: 5%;
+  left: 18%;
+  color: burlywood;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 60px;
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid #e67e22;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #333;
+  text-align: center;
+  margin: 20px auto;
+  width: fit-content;
+  background-color: rgb(219, 185, 172, 0.7);
 }
+
 #game-container {
   display: none;
   position: relative;
@@ -50,12 +61,21 @@ body {
   left: 60%;
   color: #f39c12;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 30px;
+  font-size: 20px;
+  font-style: oblique;
   z-index: 10;
+  display: inline-block;
+  padding: 10px 30px;
+  border: 4px solid #e67e22;
+  background-color: rgb(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-h2 {
+.statistics h2 {
   padding: 0;
   margin: 0;
+  color: #dd8800;
 }
 p {
   padding: 0;
