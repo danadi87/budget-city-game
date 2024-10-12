@@ -66,6 +66,10 @@ class Game {
       //check for collisions between the player and the obstacle and update the collected items
       const didCollide = this.player.didCollide(currentObstacle);
       if (didCollide) {
+        //remove the obstacle
+        this.obstacles.splice(i, 1);
+        currentObstacle.element.remove;
+        //update the count on the garbage items collected
         this.collectedGarbageItems++;
         this.collectedGarbageItems.innerText = this.collectedGarbageItems;
       }

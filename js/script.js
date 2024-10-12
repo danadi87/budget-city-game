@@ -18,10 +18,10 @@ window.onload = function () {
       ourGame.player.directionX = -2;
     }
     if (event.code === "ArrowUp") {
-      ourGame.player.directionY = -2;
+      ourGame.player.directionY = 2;
     }
     if (event.code === "ArrowDown") {
-      ourGame.player.directionY = 2;
+      ourGame.player.directionY = -2;
     }
   });
 

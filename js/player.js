@@ -19,19 +19,19 @@ class Player {
     this.gameScreen.appendChild(this.element);
   }
   move() {
-    this.left += this.directionY;
-    this.bottom += this.directionX;
-    if (this.left < 10) {
-      this.left = 10;
+    this.left += this.directionX;
+    this.bottom += this.directionY;
+    if (this.left < 20) {
+      this.left = 20;
     }
-    if (this.left + this.width > 200) {
-      this.left = 200 - this.width;
+    if (this.left + this.width > window.innerWidth) {
+      this.left = window.innerWidth - this.width;
     }
     if (this.bottom < 10) {
-      this.bottom = 0;
+      this.bottom = 10;
     }
-    if (this.bottom + this.height > 340) {
-      this.bottom = 340 - this.height;
+    if (this.bottom + this.height > window.innerHeight) {
+      this.bottom = window.innerHeight - this.height;
     }
 
     this.updatePosition();
@@ -42,7 +42,7 @@ class Player {
   }
   didCollide(obstacle) {
     const playerRect = this.element.getBoundingClientRect();
-    const obstacleRect = this.element.getBoundingClientRect();
+    const obstacleRect = obstacle.element.getBoundingClientRect();
 
     if (
       playerRect.left < obstacleRect.right &&

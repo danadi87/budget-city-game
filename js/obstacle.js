@@ -2,12 +2,12 @@ class Obstacle {
   constructor() {
     this.gameScreen = document.querySelector("#game-screen");
     //the position is Y because the obstacles will move horizontally and not vertically
-    this.positionY = [150, 360, 540, 1000, 1300, 970, 800, 280];
+    this.positionY = [150, 100, 40, 10, 28, 37, 99, 32];
     this.randomIndex = Math.floor(Math.random() * this.positionY.length);
-    this.top = this.positionY[this.randomIndex];
+    this.bottom = this.positionY[this.randomIndex];
     this.height = 120;
     this.width = 100;
-    this.left = 1200; //start on the right side of the screen
+    this.left = window.innerWidth; //start on the right side of the screen
 
     //create an array of obstacles
     const obstacleImages = [
@@ -41,18 +41,29 @@ class Obstacle {
     this.element.style.height = `${this.height}px`;
     this.element.style.width = `${this.width}px`;
     this.element.style.left = `${this.left}px`;
-    this.element.style.top = `${this.top}px`;
+    this.element.style.bottom = `${this.bottom}px`;
 
     //append the obstacle image to the game screen
     this.gameScreen.appendChild(this.element);
   }
   move() {
+    //moving the obstacle to the left 3 pixels
     this.left -= 3;
+
+    //check if the obstacle has gone out of bounds and resets it to the right side
+    if (this.left < -this.width) {
+      this.left = window.innerWidth;
+
+      //reset the bottom position randomly
+      this.randomIndex = Math.floor(Math.random() * this.positionY.length);
+      this.bottom = this.positionY[this.randomIndex];
+    }
+
     this.updatePosition();
   }
   //the method to visually see where the player moves
   updatePosition() {
-    this.element.style.top = `${this.top}px`;
+    this.element.style.bottom = `${this.bottom}px`;
     this.element.style.left = `${this.left}px`;
   }
 }
