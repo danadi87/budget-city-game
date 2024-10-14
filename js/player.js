@@ -55,4 +55,19 @@ class Player {
       return false;
     }
   }
+  didCollide(trashCan) {
+    const playerRect = this.element.getBoundingClientRect();
+    const trashCanRect = trashCan.element.getBoundingClientRect();
+
+    if (
+      playerRect.left < trashCanRect.right &&
+      playerRect.right > trashCanRect.left &&
+      playerRect.top < trashCanRect.bottom &&
+      playerRect.bottom > trashCanRect.top
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

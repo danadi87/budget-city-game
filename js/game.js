@@ -9,13 +9,7 @@ class Game {
     this.collectedGarbageItems = document.getElementById(
       "collected-garbage-items"
     );
-    this.player = new Player(
-      0,
-      30,
-      200,
-      320,
-      "./images/garbage collector.png"
-    );
+    this.player = new Player(0, 30, 200, 320, "./images/garbage collector.png");
     this.height = 100;
     this.width = 100;
     this.obstacles = [new Obstacle()];
@@ -82,6 +76,35 @@ class Game {
         //update the count on the garbage items collected
         this.collectedGarbageItemsCount++;
         this.collectedGarbageItems.innerText = this.collectedGarbageItemsCount;
+      }
+      //check for collisions between the player and the trash can
+      const didCollideTrashCan = this.player.didCollide(this.trashCan);
+      if (didCollideTrashCan) {
+        // if the player had items collected, then the score updates to the number of collected items
+        if (this.collectedGarbageItemsCount > 0) {
+          this.score += this.collectedGarbageItemsCount;
+          this.scoreElement.innerText = this.score;
+
+          // and we need to reset the collected items count back to 0
+          this.collectedGarbageItemsCount = 0;
+          this.collectedGarbageItems.innerText =
+            this.collectedGarbageItemsCount;
+        } else {
+          //if the player collides with the trash can without having collected anything, he loses a life
+          this.lives--;
+          this.livesElement.innerText = this.lives;
+
+          //if no more lives are left, the game ends
+          if (this.lives === 0) {
+            this.gameIsOver = true;
+            this.player.element.remove();
+            this.obstacles.forEach((oneObstacle) => {
+              oneObstacle.element.remove();
+            });
+            this.gameScreen.style.display = "none";
+            this.endScreen.style.display = "block";
+          }
+        }
       }
     }
   }

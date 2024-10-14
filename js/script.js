@@ -12,16 +12,16 @@ window.onload = function () {
   //event listener for the key arrows
   document.addEventListener("keydown", (event) => {
     if (event.code === "ArrowRight") {
-      ourGame.player.directionX = 2;
+      ourGame.player.directionX = 3;
     }
     if (event.code === "ArrowLeft") {
-      ourGame.player.directionX = -2;
+      ourGame.player.directionX = -3;
     }
     if (event.code === "ArrowUp") {
-      ourGame.player.directionY = 2;
+      ourGame.player.directionY = 3;
     }
     if (event.code === "ArrowDown") {
-      ourGame.player.directionY = -2;
+      ourGame.player.directionY = -3;
     }
   });
 
