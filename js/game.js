@@ -28,6 +28,11 @@ class Game {
       "./images/point-winners/old closed trash can.png"
     );
     this.startGameMusic = new Audio("../sounds/start-game-music.wav");
+    this.positionY = [
+      500, 400, 340, 50, 218, 32, 324, 488, 170, 85, 110, 48, 33, 263, 144,
+    ];
+    this.randomIndex = Math.floor(Math.random() * this.positionY.length);
+    this.bottom = this.positionY[this.randomIndex];
   }
   start() {
     //set the height and width of the game screen
@@ -95,6 +100,12 @@ class Game {
           //if the player collides with the trash can without having collected anything, he loses a life
           this.lives--;
           this.livesElement.innerText = this.lives;
+
+          //reset the trash can position
+          const randomIndex = Math.floor(Math.random() * this.positionY.length);
+          const randomYPosition = this.positionY[randomIndex];
+
+            this.element.style.position = "absolute";
 
           //if no more lives are left, the game ends
           if (this.lives === 0) {
