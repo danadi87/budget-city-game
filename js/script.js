@@ -1,11 +1,22 @@
 window.onload = function () {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
+  const howToButton = document.getElementById("how-to-button");
+  const returnButton = document.getElementById("return-home");
+
   let ourGame;
+  let readInstruction;
+
   startButton.addEventListener("click", function () {
     startGame();
   });
   restartButton.addEventListener("click", function () {
+    window.location.reload();
+  });
+  howToButton.addEventListener("click", function () {
+    readInstructions();
+  });
+  returnButton.addEventListener("click", function () {
     window.location.reload();
   });
 
@@ -46,5 +57,10 @@ window.onload = function () {
     ourGame = new Game();
     //to call the start method on our Game class
     ourGame.start();
+  }
+  function readInstructions() {
+    console.log("instructions");
+    readInstruction = new Instructions();
+    readInstruction.showInstructions();
   }
 };

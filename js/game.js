@@ -27,6 +27,7 @@ class Game {
       200,
       "./images/point-winners/old closed trash can.png"
     );
+    this.startGameMusic = new Audio("../sounds/start-game-music.wav");
   }
   start() {
     //set the height and width of the game screen
@@ -44,6 +45,7 @@ class Game {
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
     }, this.gameLoopFrequency);
+    //this.startGameMusic.play();
   }
   gameLoop() {
     this.update();
