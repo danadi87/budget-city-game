@@ -4,7 +4,7 @@ class Instructions {
     this.instructions = document.querySelector("#instructions");
     this.height = 100;
     this.width = 100;
-    this.startGameMusic = new Audio("../sounds/start-game-music.wav");
+    this.startGameMusic = new Audio("sounds/start-game-music.wav");
   }
   showInstructions() {
     //set the height and width of the instructions screen

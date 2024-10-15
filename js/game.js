@@ -9,7 +9,7 @@ class Game {
     this.collectedGarbageItems = document.getElementById(
       "collected-garbage-items"
     );
-    this.player = new Player(0, 30, 200, 320, "./images/garbage collector.png");
+    this.player = new Player(0, 30, 200, 320, "images/garbage collector.png");
     this.height = 100;
     this.width = 100;
     this.obstacles = [new Obstacle()];
@@ -25,9 +25,9 @@ class Game {
       400,
       100,
       200,
-      "./images/point-winners/old closed trash can.png"
+      "images/point-winners/old closed trash can.png"
     );
-    this.startGameMusic = new Audio("../sounds/start-game-music.wav");
+    this.startGameMusic = new Audio("sounds/start-game-music.wav");
     this.positionY = [
       500, 400, 340, 50, 218, 32, 324, 488, 170, 85, 110, 48, 33, 263, 144,
     ];
@@ -105,7 +105,7 @@ class Game {
           const randomIndex = Math.floor(Math.random() * this.positionY.length);
           const randomYPosition = this.positionY[randomIndex];
 
-            this.element.style.position = "absolute";
+          this.element.style.position = "absolute";
 
           //if no more lives are left, the game ends
           if (this.lives === 0) {

@@ -6,7 +6,7 @@ body {
 }
 #game-intro {
   position: relative;
-  background-image: url("../images/shop.png");
+  background-image: url("images/shop.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -121,7 +121,7 @@ p {
 #game-screen {
   display: none;
   position: relative;
-  background-image: url("../images/street.png");
+  background-image: url("images/street.png");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -133,7 +133,7 @@ p {
 #game-end {
   display: none;
   position: relative;
-  background-image: url("../images/background end game.png");
+  background-image: url("images/background end game.png");
   background-size: contain;
   background-position: center;
   height: 100vh;
