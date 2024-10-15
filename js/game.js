@@ -104,8 +104,9 @@ class Game {
           //reset the trash can position
           const randomIndex = Math.floor(Math.random() * this.positionY.length);
           const randomYPosition = this.positionY[randomIndex];
+          this.trashCan.y = randomYPosition;
 
-          this.element.style.position = "absolute";
+          this.trashCan.updatePosition();
 
           //if no more lives are left, the game ends
           if (this.lives === 0) {
