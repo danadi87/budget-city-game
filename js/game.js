@@ -19,7 +19,7 @@ class Game {
     this.gameIntervalId = null;
     this.gameLoopFrequency = 1000 / 120;
     this.counter = 0;
-    this.collectedGarbageItemsCount = 0;
+    this.collectedGarbageItemsCount = 0 / 50;
     this.trashCan = new Player(
       1300,
       400,
@@ -36,6 +36,8 @@ class Game {
     this.positionX = [];
     this.timerElement = document.getElementById("timer");
     this.timer = null;
+    this.messageLoser = document.getElementById("message-loser");
+    this.messageWinner = document.getElementById("message-winner");
   }
   start() {
     //set the height and width of the game screen
@@ -63,7 +65,7 @@ class Game {
     this.startCountdown();
   }
   startCountdown() {
-    let duration = 120;
+    let duration = 75;
     this.timer = setInterval(() => {
       duration--;
       let minutes = Math.floor(duration / 60);
@@ -115,7 +117,7 @@ class Game {
         currentObstacle.element.remove();
         //update the count on the garbage items collected
         this.collectedGarbageItemsCount++;
-        this.collectedGarbageItems.innerText = this.collectedGarbageItemsCount;
+        this.collectedGarbageItems.innerText = `${this.collectedGarbageItemsCount} / 50`;
       }
       //check for collisions between the player and the trash can
       const didCollideTrashCan = this.player.didCollide(this.trashCan);
@@ -159,8 +161,21 @@ class Game {
       oneObstacle.element.remove();
     });
     this.gameScreen.style.display = "none";
-    this.endScreen.style.display = "block";
+    this.endScreen.style.display = "flex";
+
     //to stop the music
     this.startGameMusic.pause();
+
+    //show the display of the endGame message
+    this.messageLoser.style.display = "none";
+    this.messageWinner.style.display = "none";
+
+    if (this.lives === 0) {
+      this.messageLoser.style.display = "block";
+    } else if (this.lives > 0 && this.score < 50) {
+      this.messageLoser.style.display = "block";
+    } else if (this.lives > 0 && this.score >= 50) {
+      this.messageWinner.style.display = "block";
+    }
   }
 }
