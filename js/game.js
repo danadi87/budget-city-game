@@ -34,6 +34,8 @@ class Game {
     this.randomIndex = Math.floor(Math.random() * this.positionY.length);
     this.bottom = this.positionY[this.randomIndex];
     this.positionX = [];
+    this.timerElement = document.getElementById("timer");
+    this.timer = null;
   }
   start() {
     //set the height and width of the game screen
@@ -52,6 +54,34 @@ class Game {
       this.gameLoop();
     }, this.gameLoopFrequency);
     this.startGameMusic.play();
+
+    //making the audio to play in a loop
+    this.startGameMusic.loop = true;
+    this.startGameMusic.play();
+
+    //start the timer to countdown
+    this.startCountdown();
+  }
+  startCountdown() {
+    let duration = 120;
+    this.timer = setInterval(() => {
+      duration--;
+      let minutes = Math.floor(duration / 60);
+      let seconds = duration % 60;
+      if (minutes < 10) {
+        minutes = "0" + minutes;
+      }
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+      const formattedTime = `${minutes}:${seconds}`;
+      this.timerElement.innerText = formattedTime;
+      if (duration === 0) {
+        clearInterval(this.timer);
+        this.gameIsOver = true;
+        this.endGame;
+      }
+    }, 1000);
   }
   gameLoop() {
     this.update();
@@ -59,6 +89,8 @@ class Game {
     //to check if the game is over and to stop it if it's true
     if (this.gameIsOver === true) {
       clearInterval(this.gameIntervalId);
+      clearInterval(this.timer);
+      this.endGame();
     }
   }
   update() {
@@ -112,19 +144,23 @@ class Game {
           this.trashCan.left = randomXPosition;
 
           this.trashCan.updatePosition();
-
-          //if no more lives are left, the game ends
           if (this.lives === 0) {
             this.gameIsOver = true;
-            this.player.element.remove();
-            this.obstacles.forEach((oneObstacle) => {
-              oneObstacle.element.remove();
-            });
-            this.gameScreen.style.display = "none";
-            this.endScreen.style.display = "block";
+            this.endGame();
           }
         }
       }
     }
+  }
+  endGame() {
+    //if no more lives are left, the game ends
+    this.player.element.remove();
+    this.obstacles.forEach((oneObstacle) => {
+      oneObstacle.element.remove();
+    });
+    this.gameScreen.style.display = "none";
+    this.endScreen.style.display = "block";
+    //to stop the music
+    this.startGameMusic.pause();
   }
 }
