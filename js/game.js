@@ -17,7 +17,7 @@ class Game {
     this.lives = 3;
     this.gameIsOver = false;
     this.gameIntervalId = null;
-    this.gameLoopFrequency = 1000 / 60;
+    this.gameLoopFrequency = 1000 / 120;
     this.counter = 0;
     this.collectedGarbageItemsCount = 0;
     this.trashCan = new Player(
@@ -33,6 +33,7 @@ class Game {
     ];
     this.randomIndex = Math.floor(Math.random() * this.positionY.length);
     this.bottom = this.positionY[this.randomIndex];
+    this.positionX = [];
   }
   start() {
     //set the height and width of the game screen
@@ -50,7 +51,7 @@ class Game {
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
     }, this.gameLoopFrequency);
-    //this.startGameMusic.play();
+    this.startGameMusic.play();
   }
   gameLoop() {
     this.update();
@@ -104,7 +105,11 @@ class Game {
           //reset the trash can position
           const randomIndex = Math.floor(Math.random() * this.positionY.length);
           const randomYPosition = this.positionY[randomIndex];
-          this.trashCan.y = randomYPosition;
+          const randomXPosition = Math.floor(
+            Math.random() * (window.innerWidth - this.trashCan.width)
+          );
+          this.trashCan.bottom = randomYPosition;
+          this.trashCan.left = randomXPosition;
 
           this.trashCan.updatePosition();
 
