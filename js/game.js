@@ -121,6 +121,7 @@ class Game {
         currentObstacle.element.remove();
         //update the count on the garbage items collected
         this.collectedGarbageItemsCount++;
+        console.log(this.collectedGarbageItemsCount);
         this.collectedGarbageItems.innerText = this.collectedGarbageItemsCount;
       }
       //check for collisions between the player and the trash can
@@ -130,12 +131,22 @@ class Game {
         if (this.collectedGarbageItemsCount > 0) {
           this.score += this.collectedGarbageItemsCount;
           this.scoreElement.innerText = this.score;
+          //reset the trash can position
+          const randomIndex = Math.floor(Math.random() * this.positionY.length);
+          const randomYPosition = this.positionY[randomIndex];
+          const randomXPosition = Math.floor(
+            Math.random() * (window.innerWidth - this.trashCan.width)
+          );
+          this.trashCan.bottom = randomYPosition;
+          this.trashCan.left = randomXPosition;
 
+          this.trashCan.updatePosition();
           // and we need to reset the collected items count back to 0
           this.collectedGarbageItemsCount = 0;
           this.collectedGarbageItems.innerText =
             this.collectedGarbageItemsCount;
         } else {
+          console.log("test", this.collectedGarbageItemsCount);
           //if the player collides with the trash can without having collected anything, he loses a life
           this.lives--;
           this.livesElement.innerText = this.lives;

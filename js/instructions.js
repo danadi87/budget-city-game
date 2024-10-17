@@ -18,10 +18,10 @@ class Instructions {
     this.instructions.style.display = "block";
 
     //start the music for the game
-    this.startGameMusic.play();
+    // this.startGameMusic.play();
 
     //making the audio to play in a loop
     this.startGameMusic.loop = true;
-    this.startGameMusic.play();
+    //this.startGameMusic.play();
   }
 }
