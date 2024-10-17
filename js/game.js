@@ -25,7 +25,7 @@ class Game {
       400,
       100,
       200,
-      "images/old closed trash can.png"
+      "images/old-closed-trash-can.png"
     );
     this.startGameMusic = new Audio("sounds/start-game-music.wav");
     this.positionY = [
@@ -40,6 +40,7 @@ class Game {
     this.messageWinner = document.getElementById("message-winner");
     this.endGameMusicLoser = new Audio("sounds/end-game-lose.wav");
     this.endGameMusicWinner = new Audio("sounds/end-game-win.wav");
+    this.highScores = document.getElementById("high-scores-card");
   }
   start() {
     //set the height and width of the game screen
@@ -48,6 +49,7 @@ class Game {
 
     //to hide the start screen
     this.startScreen.style.display = "none";
+    this.highScores.style.display = "none";
 
     //to show the game screen
     this.gameScreen.style.display = "block";
@@ -183,6 +185,41 @@ class Game {
     } else if (this.lives > 0 && this.score >= 50) {
       this.messageWinner.style.display = "block";
       this.endGameMusicWinner.play();
+    }
+
+    //show the high scores card
+    if (this.gameIsOver === true) {
+      this.highScores.style.display = "block";
+    }
+
+    //store the score inside the local storage
+    const highScoresFromLS = JSON.parse(localStorage.getItem("highScores"));
+
+    //setting the high score the first time playing the game
+    if (!highScoresFromLS) {
+      localStorage.setItem("highScores", JSON.stringify([this.score]));
+    } else {
+      highScoresFromLS.push(this.score);
+
+      //after pushing the score, sort in descending order
+      highScoresFromLS.sort((a, b) => {
+        if (a > b) {
+          return -1;
+        } else if (a < b) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      const topThreeScores = highScoresFromLS.slice(0, 3);
+      localStorage.setItem("highScores", JSON.stringify([...topThreeScores]));
+
+      //update the DOM to show the three scores stored
+      topThreeScores.forEach((oneScore) => {
+        const newLi = document.createElement("li");
+        newLi.innerText = oneScore;
+        this.highScores.appendChild(newLi);
+      });
     }
   }
 }

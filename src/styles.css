@@ -170,6 +170,35 @@ p {
   height: 100vh;
   width: 100vw;
 }
+
+#high-scores-card {
+  padding: 0;
+  margin: 0;
+  display: "none";
+  position: absolute;
+  top: 1%;
+  left: 65%;
+  color: #f39c12;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+  font-style: oblique;
+  z-index: 10;
+  display: inline-block;
+  padding: 10px 30px;
+  border: 4px solid #e67e22;
+  background-color: rgb(255, 255, 255, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+#high-scores-card h4 {
+  padding: 0;
+  margin: 0;
+  color: #dd8800;
+}
+#high-scores li {
+  width: 20%;
+}
 #restart-button {
   position: absolute;
   top: 65%;
