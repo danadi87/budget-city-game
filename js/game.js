@@ -97,6 +97,34 @@ class Game {
       clearInterval(this.gameIntervalId);
       clearInterval(this.timer);
       this.endGame();
+      //store the score inside the local storage
+      const highScoresFromLS = JSON.parse(localStorage.getItem("highScores"));
+      //setting the high score the first time playing the game
+      if (!highScoresFromLS) {
+        localStorage.setItem("highScores", JSON.stringify([this.score]));
+      } else {
+        highScoresFromLS.push(this.score);
+
+        //after pushing the score, sort in descending order and slice the first 3
+        highScoresFromLS.sort((a, b) => {
+          if (a > b) {
+            return -1;
+          } else if (a < b) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+        const topThreeScores = highScoresFromLS.slice(0, 3);
+        localStorage.setItem("highScores", JSON.stringify([...topThreeScores]));
+
+        //update the DOM to show the three scores stored
+        topThreeScores.forEach((oneScore) => {
+          const newLi = document.createElement("li");
+          newLi.innerText = oneScore;
+          this.highScores.appendChild(newLi);
+        });
+      }
     }
   }
   update() {
@@ -130,7 +158,8 @@ class Game {
         // if the player had items collected, then the score updates to the number of collected items
         if (this.collectedGarbageItemsCount > 0) {
           this.score += this.collectedGarbageItemsCount;
-          this.scoreElement.innerText = this.score;
+          this.scoreElement.innerText = `${this.score} / 50`;
+
           //reset the trash can position
           const randomIndex = Math.floor(Math.random() * this.positionY.length);
           const randomYPosition = this.positionY[randomIndex];
@@ -201,36 +230,6 @@ class Game {
     //show the high scores card
     if (this.gameIsOver === true) {
       this.highScores.style.display = "block";
-    }
-
-    //store the score inside the local storage
-    const highScoresFromLS = JSON.parse(localStorage.getItem("highScores"));
-
-    //setting the high score the first time playing the game
-    if (!highScoresFromLS) {
-      localStorage.setItem("highScores", JSON.stringify([this.score]));
-    } else {
-      highScoresFromLS.push(this.score);
-
-      //after pushing the score, sort in descending order
-      highScoresFromLS.sort((a, b) => {
-        if (a > b) {
-          return -1;
-        } else if (a < b) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      const topThreeScores = highScoresFromLS.slice(0, 3);
-      localStorage.setItem("highScores", JSON.stringify([...topThreeScores]));
-
-      //update the DOM to show the three scores stored
-      topThreeScores.forEach((oneScore) => {
-        const newLi = document.createElement("li");
-        newLi.innerText = oneScore;
-        this.highScores.appendChild(newLi);
-      });
     }
   }
 }
