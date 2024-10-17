@@ -5,6 +5,7 @@ class Instructions {
     this.height = 100;
     this.width = 100;
     this.startGameMusic = new Audio("sounds/start-game-music.wav");
+    this.startGameMusic.volume = 0.07;
   }
   showInstructions() {
     //set the height and width of the instructions screen

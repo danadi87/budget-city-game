@@ -28,6 +28,7 @@ class Game {
       "images/old-closed-trash-can.png"
     );
     this.startGameMusic = new Audio("sounds/start-game-music.wav");
+    this.startGameMusic.volume = 0.07;
     this.positionY = [
       500, 400, 340, 50, 218, 32, 324, 488, 170, 85, 110, 48, 33, 263, 144,
     ];
@@ -39,7 +40,9 @@ class Game {
     this.messageLoser = document.getElementById("message-loser");
     this.messageWinner = document.getElementById("message-winner");
     this.endGameMusicLoser = new Audio("sounds/end-game-lose.wav");
+    this.endGameMusicLoser.volume = 0.07;
     this.endGameMusicWinner = new Audio("sounds/end-game-win.wav");
+    this.endGameMusicWinner.volume = 0.07;
     this.highScores = document.getElementById("high-scores-card");
   }
   start() {
@@ -159,7 +162,6 @@ class Game {
         if (this.collectedGarbageItemsCount > 0) {
           this.score += this.collectedGarbageItemsCount;
           this.scoreElement.innerText = `${this.score} / 50`;
-
           //reset the trash can position
           const randomIndex = Math.floor(Math.random() * this.positionY.length);
           const randomYPosition = this.positionY[randomIndex];
