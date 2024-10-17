@@ -25,7 +25,7 @@ class Game {
       400,
       100,
       200,
-      "images/point-winners/old closed trash can.png"
+      "images/old closed trash can.png"
     );
     this.startGameMusic = new Audio("sounds/start-game-music.wav");
     this.positionY = [
