@@ -13,13 +13,13 @@ class Game {
     this.height = 100;
     this.width = 100;
     this.obstacles = [new Obstacle()];
-    this.score = 0;
+    this.score = 0 / 50;
     this.lives = 3;
     this.gameIsOver = false;
     this.gameIntervalId = null;
     this.gameLoopFrequency = 1000 / 120;
     this.counter = 0;
-    this.collectedGarbageItemsCount = 0 / 50;
+    this.collectedGarbageItemsCount = 0;
     this.trashCan = new Player(
       1300,
       400,
@@ -38,6 +38,8 @@ class Game {
     this.timer = null;
     this.messageLoser = document.getElementById("message-loser");
     this.messageWinner = document.getElementById("message-winner");
+    this.endGameMusicLoser = new Audio("sounds/end-game-lose.wav");
+    this.endGameMusicWinner = new Audio("sounds/end-game-win.wav");
   }
   start() {
     //set the height and width of the game screen
@@ -117,7 +119,7 @@ class Game {
         currentObstacle.element.remove();
         //update the count on the garbage items collected
         this.collectedGarbageItemsCount++;
-        this.collectedGarbageItems.innerText = `${this.collectedGarbageItemsCount} / 50`;
+        this.collectedGarbageItems.innerText = this.collectedGarbageItemsCount;
       }
       //check for collisions between the player and the trash can
       const didCollideTrashCan = this.player.didCollide(this.trashCan);
@@ -146,6 +148,8 @@ class Game {
           this.trashCan.left = randomXPosition;
 
           this.trashCan.updatePosition();
+
+          //check if the player is out of lives
           if (this.lives === 0) {
             this.gameIsOver = true;
             this.endGame();
@@ -172,10 +176,13 @@ class Game {
 
     if (this.lives === 0) {
       this.messageLoser.style.display = "block";
+      this.endGameMusicLoser.play();
     } else if (this.lives > 0 && this.score < 50) {
       this.messageLoser.style.display = "block";
+      this.endGameMusicLoser.play();
     } else if (this.lives > 0 && this.score >= 50) {
       this.messageWinner.style.display = "block";
+      this.endGameMusicWinner.play();
     }
   }
 }
