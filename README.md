@@ -10,7 +10,7 @@ The player has to collect as many garbage items as possible in the time given, b
 
 # Main functionalities
 
-- The player moves using the left, right, up and down arrowkeys
+- The player moves around the game screen using the left, right, up and down arrow keys
 - The player must interact with the various garbage items to collect them
 - During the game, he has to interact with the trash can at least once before the time is up so the collected items can be added as points to his score
 - Everytime the player interacts with the trash can, the can will change position
