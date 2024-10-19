@@ -7,7 +7,6 @@ class Player {
     this.height = height;
     this.directionX = 0;
     this.directionY = 0;
-    //create the image in the js file to append to the game screen
     this.element = document.createElement("img");
     this.element.style.position = "absolute";
     this.element.src = playerImage;
@@ -15,7 +14,6 @@ class Player {
     this.element.style.width = `${width}px`;
     this.element.style.bottom = `${this.bottom}px`;
     this.element.style.left = `${this.left}px`;
-    //to add the image to the DOM
     this.gameScreen.appendChild(this.element);
   }
   move() {

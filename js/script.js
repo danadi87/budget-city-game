@@ -20,7 +20,6 @@ window.onload = function () {
     window.location.reload();
   });
 
-  //event listener for the key arrows
   document.addEventListener("keydown", (event) => {
     if (event.code === "ArrowRight") {
       ourGame.player.directionX = 3;
@@ -36,7 +35,6 @@ window.onload = function () {
     }
   });
 
-  //event listener that sets the directions to 0 when the keys are released
   document.addEventListener("keyup", (event) => {
     if (event.code === "ArrowRight") {
       ourGame.player.directionX = 0;
@@ -53,9 +51,7 @@ window.onload = function () {
   });
   function startGame() {
     console.log("start game");
-    //to create the Game object and store it in the variable
     ourGame = new Game();
-    //to call the start method on our Game class
     ourGame.start();
   }
   function readInstructions() {
